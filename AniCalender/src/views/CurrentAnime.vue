@@ -32,7 +32,7 @@ interface Anime {
   broadcast: string | null;
 }
 //state to hold fetched anime data
-const animeList=ref<Anime[]|null>(null);
+const animeList=ref<Anime[]| null>(null);
 const loading=ref<boolean>(true);
 const error=ref<Error|null>(null);
 //handler for data fetched event

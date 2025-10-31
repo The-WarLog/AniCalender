@@ -1,6 +1,6 @@
 <template>
   <main>
-    <SearchFilter :SearchQuery="searchQuery" @dataFetched="handleData" />
+    <SearchFilter :SearchQuery="searchQuery" @data-fetched="handleData" />
 
     <div v-if="loading" class="loading">Searching for anime...</div>
     <div v-else-if="error" class="error">{{ error }}</div>

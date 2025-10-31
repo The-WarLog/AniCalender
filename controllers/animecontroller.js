@@ -3,13 +3,11 @@ const axios = require("axios");
 const JIKAN_API_BASE_URL = process.env.JIKAN_API_BASE_URL || 'https://api.jikan.moe/v4';
 
 const mapAnimeData = (item) => ({
-    imageUrl: item.images?.jpg?.image_url || null,
     title: item.title,
     titleEnglish: item.title_english,
     malScore: item.score,
     status: item.status,
     rating: item.rating,
-    episodes: item?.episodes,
     airDate: item.aired?.from ? new Date(item.aired.from).toUTCString() : null,
     broadcast: item.broadcast ? `${item.broadcast.day} at ${item.broadcast.time} (${item.broadcast.timezone})` : null
 });
@@ -97,13 +95,13 @@ exports.GetParticularAnimeInfo = async (req, res, next) => {
             limit,
             rating: allowedRatings.includes(rating) ? rating : null
         });
-        const result = await fetchFromJikan(url);a
+        const result = await fetchFromJikan(url);
         
-        const lowerCaseName = name.toLowerCase();
+        const normalizedSearchName = name.toLowerCase().replace(/\s+/g, '');
         const filteredData = result.data.filter(item => {
-            const title = (item.title || '').toLowerCase();
-            const titleEnglish = (item.title_english || '').toLowerCase();
-            return title.includes(lowerCaseName) || titleEnglish.includes(lowerCaseName);
+            const title = (item.title || '').toLowerCase().replace(/\s+/g, '');
+            const titleEnglish = (item.title_english || '').toLowerCase().replace(/\s+/g, '');
+            return title.includes(normalizedSearchName) || titleEnglish.includes(normalizedSearchName);
         });
 
         if (filteredData.length === 0) {

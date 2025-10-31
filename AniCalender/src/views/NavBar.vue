@@ -84,7 +84,9 @@
 <script lang="ts" setup>
 import { computed,ref,Ref ,inject,watch} from 'vue';
 import { useRouter } from 'vue-router';
+
 //Search bar Values
+
 const searchInput=ref<string>('');
 const router=useRouter();
 const start=1990;
@@ -122,7 +124,7 @@ function performSearch(){
         // Use Vue Router to push to the new route.
         // We use encodeURIComponent to make sure spaces or special
         // characters (like 'Cowboy Bebop') are safe for a URL.
-        router.push('/anime/' + encodeURIComponent(query));
+        router.push('/anime/search/' + encodeURIComponent(query));
       }
 }
 </script>

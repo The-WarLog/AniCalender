@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [{
     path: '/',
     name: 'home',
@@ -22,11 +22,11 @@ const router = createRouter({
       name:'targetAnime',
       component: () => import('@/views/ParticularAnime.vue')
     },
-    {
-  path: '/search',
-  name: 'Search',
-  component: () => import('@/views/ParticularAnime.vue') // reuse for search
-}
+//     {
+//   path: '/search',
+//   name: 'Search',
+//   component: () => import('@/views/ParticularAnime.vue') // reuse for search
+// }
 
 
   ],

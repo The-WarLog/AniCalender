@@ -19,7 +19,7 @@ const animeRequest=defineProps<{
 
 }>()
 const emit=defineEmits<{
-  (e:'dataFetched',data : JSON ):void;
+  (e:'data-fetched',data : JSON ):void;
   (e:'loading',loading:boolean):void;
   (e:'error',error:Error|null):void;
 }>();
@@ -43,7 +43,7 @@ async function fetchAnimeData(){
   try{
     const data=await callbackurl.json();
     loading.value=true;
-    emit('dataFetched',data);
+    emit('data-fetched',data);
     console.log(data);
   }catch(err){
     error.value = err instanceof Error ? err : new Error(String(err));
